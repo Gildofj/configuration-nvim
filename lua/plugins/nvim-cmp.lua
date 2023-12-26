@@ -58,10 +58,10 @@ return {
 		local copilot_cmd = require("copilot_cmp")
 		copilot_cmd.setup({})
 
-		require("lazyvim.util").lsp.on_attach(function(client)
-			if client.name == "copilot" then
-				copilot_cmd._on_insert_enter({})
-			end
-		end)
+		-- require("lazyvim.util").lsp.on_attach(function(client)
+		-- 	if client.name == "copilot" then
+		-- 		copilot_cmd._on_insert_enter({})
+		-- 	end
+		-- end)
 	end,
 }
