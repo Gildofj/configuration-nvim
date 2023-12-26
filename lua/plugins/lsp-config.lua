@@ -52,10 +52,66 @@ return {
 			{ "antosha417/nvim-lsp-file-operations", config = true },
 		},
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
+
+			local opts = { noremap = true, silent = true }
+			local on_attach = function(client, bufnr)
+				opts.buffer = bufnr
+
+				-- set keybinds
+				opts.desc("Show LSP references")
+				vim.keymap.set("n", "gR", ":Telescope lsp_references<CR>", opts)
+
+				opts.desc = "Go to declaration"
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
+				opts.desc = "Show LSP definitions"
+				vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+
+				opts.desc = "Show LSP implementations"
+				vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", opts)
+
+				opts.desc = "Show LSP type definitions"
+				vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
+
+				opts.desc = "See available code actions"
+				vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
+
+				opts.desc = "Smart rename"
+				vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, opts)
+
+				opts.desc = "Show buffer diagnostics"
+				vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", opts)
+
+				opts.desc = "Show line diagnostics"
+				vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+
+				opts.desc = "Go to previous diagnostic"
+				vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+
+				opts.desc = "Go to next diagnostic"
+				vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+
+				opts.desc = "Show documentation for what is under cursor"
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+				opts.desc = "Restart LSP"
+				vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+			end
+
+			-- Change the Diagnostic symbols in the sign column (gutter)
+			-- (not in youtube nvim video)
+			local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
+
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
+				on_attach = on_attach,
 				settings = {
 					Lua = {
 						-- make the language server recognize "vim" global
@@ -72,33 +128,52 @@ return {
 					},
 				},
 			})
-			lspconfig.tsserver.setup({ capabilities = capabilities })
-			lspconfig.csharp_ls.setup({ capabilities = capabilities })
-			lspconfig.cssmodules_ls.setup({ capabilities = capabilities })
+
+			lspconfig.tsserver.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.csharp_ls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.cssmodules_ls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
 			lspconfig.emmet_ls.setup({
 				capabilities = capabilities,
+				on_attach = on_attach,
 				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
 			})
-			lspconfig.html.setup({ capabilities = capabilities })
-			lspconfig.jsonls.setup({ capabilities = capabilities })
-			lspconfig.jdtls.setup({ capabilities = capabilities })
-			lspconfig.kotlin_language_server.setup({ capabilities = capabilities })
-			lspconfig.tailwindcss.setup({ capabilities = capabilities })
 
-			local opts = { noremap = true, silent = true }
-			vim.keymap.set("n", "gR", ":Telescope lsp_references<CR>", opts)
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-			vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
-			vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", opts)
-			vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
-			vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
-			vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, opts)
-			vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", opts)
-			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-			vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+			lspconfig.html.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.jsonls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.jdtls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.kotlin_language_server.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
 		end,
 	},
 }
