@@ -85,19 +85,20 @@ return {
 			lspconfig.kotlin_language_server.setup({ capabilities = capabilities })
 			lspconfig.tailwindcss.setup({ capabilities = capabilities })
 
-			vim.keymap.set("n", "gR", ":Telescope lsp_references<CR>", {})
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-			vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", {})
-			vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", {})
-			vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", {})
-			vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, {})
-			vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", {})
-			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {})
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {})
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, {})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", {})
+			local opts = { noremap = true, silent = true }
+			vim.keymap.set("n", "gR", ":Telescope lsp_references<CR>", opts)
+			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+			vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+			vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", opts)
+			vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
+			vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
+			vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, opts)
+			vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", opts)
+			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+			vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 		end,
 	},
 }
