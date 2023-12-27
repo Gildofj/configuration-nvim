@@ -40,7 +40,7 @@ return {
 				ensure_installed = {
 					"prettier", -- prettier formatter
 					"stylua", -- lua formatter
-					"eslint_d", -- js linter
+					"eslint", -- js linter
 				},
 			})
 		end,
