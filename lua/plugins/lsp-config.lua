@@ -41,6 +41,7 @@ return {
           "prettier", -- prettier formatter
           "stylua", -- lua formatter
           "eslint", -- js linter
+          "rust-analyzer", -- rust formatter
         },
       })
     end,
@@ -50,6 +51,7 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       { "antosha417/nvim-lsp-file-operations", config = true },
+      "simrat39/rust-tools.nvim",
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -187,6 +189,14 @@ return {
       lspconfig.tailwindcss.setup({
         capabilities = capabilities,
         on_attach = on_attach,
+      })
+
+      lspconfig.rust_analyzer.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+      require("rust-tools").setup({
+        server = {},
       })
     end,
   },
