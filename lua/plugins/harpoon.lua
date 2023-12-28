@@ -4,6 +4,10 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
+    require("harpoon").setup({
+      tabline = true,
+    })
+
     -- keymaps
     vim.keymap.set(
       "n",
