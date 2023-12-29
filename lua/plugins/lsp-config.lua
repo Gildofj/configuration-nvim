@@ -61,7 +61,7 @@ return {
         opts.buffer = bufnr
 
         -- set keybinds
-        opts.desc("Show LSP references")
+        opts.desc = "Show LSP references"
         vim.keymap.set("n", "gR", ":Telescope lsp_references<CR>", opts)
 
         opts.desc = "Go to declaration"
@@ -83,12 +83,7 @@ return {
         vim.keymap.set({ "n", "v" }, "<leader>r", vim.lsp.buf.rename, opts)
 
         opts.desc = "Show buffer diagnostics"
-        vim.keymap.set(
-          "n",
-          "<leader>D",
-          ":Telescope diagnostics bufnr=0<CR>",
-          opts
-        )
+        vim.keymap.set("n", "<leader>D", ":Telescope diagnostics bufnr=0<CR>", opts)
 
         opts.desc = "Show line diagnostics"
         vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
@@ -108,8 +103,7 @@ return {
 
       -- Change the Diagnostic symbols in the sign column (gutter)
       -- (not in youtube nvim video)
-      local signs =
-        { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+      local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
