@@ -28,6 +28,7 @@ return {
           "jdtls",
           "kotlin_language_server",
           "tailwindcss",
+          "pyright",
         },
         automatic_installation = true,
       })
@@ -42,6 +43,9 @@ return {
           "stylua", -- lua formatter
           "eslint", -- js linter
           "rust-analyzer", -- rust formatter
+          "isort", -- python formatter
+          "black", -- python formatter
+          "pylint", -- python linter
         },
       })
     end,
@@ -181,6 +185,11 @@ return {
       })
 
       lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+
+      lspconfig.pyright.setup({
         capabilities = capabilities,
         on_attach = on_attach,
       })
