@@ -20,7 +20,7 @@ vim.opt.termguicolors = true
 vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- clipboard
-vim.opt.clipboard = "unnamedplus" -- use system clipboard as default register
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 -- mouse
 vim.opt.mouse:append("a")
