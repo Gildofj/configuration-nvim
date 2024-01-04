@@ -9,7 +9,7 @@ return {
         theme = "dracula",
       },
       sections = {
-        lualine_x = { "copilot", "encoding", "fileformat", "filetype" },
+        lualine_x = { "tabnine", "encoding", "fileformat", "filetype" },
       },
     })
   end,

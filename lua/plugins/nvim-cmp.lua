@@ -40,7 +40,7 @@ return {
         }),
         -- sources for autocompletion
         sources = cmp.config.sources({
-          { name = "copilot" },
+          { name = "cmp_tabnine" },
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- snippets
           { name = "buffer" }, -- text within current buffer
@@ -51,18 +51,15 @@ return {
           format = lspkind.cmp_format({
             maxwidth = 50,
             ellipsis_char = "...",
-            symbol_map = { Copilot = "" },
+            symbol_map = { Tabnine = "" },
           }),
         },
       })
     end,
   },
   {
-    "zbirenbaum/copilot-cmp",
-    event = { "InsertEnter", "LspAttach" },
-    fix_pairs = true,
-    config = function()
-      require("copilot_cmp").setup({})
-    end,
+    "tzachar/cmp-tabnine",
+    build = "./install.sh",
+    dependencies = "hrsh7th/nvim-cmp",
   },
 }
