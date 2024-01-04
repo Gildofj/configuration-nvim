@@ -114,6 +114,7 @@ return {
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local util = require("lspconfig/util")
 
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
@@ -197,6 +198,15 @@ return {
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
         on_attach = on_attach,
+        filetypes = { "rust" },
+        root_dir = util.root_pattern("Cargo.toml"),
+        settings = {
+          ["rust_analyzer"] = {
+            cargo = {
+              allFeatures = true,
+            },
+          },
+        },
       })
       require("rust-tools").setup({
         server = {},
