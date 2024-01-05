@@ -30,5 +30,5 @@ vim.keymap.set("n", "<C-w><right>", "<C-w>>")
 vim.keymap.set("n", "<C-w><up>", "<C-w>+")
 vim.keymap.set("n", "<C-w><down>", "<C-w>-")
 
--- Text refactor
+-- Text refactor test
 vim.keymap.set("n", "<C-f>", ":%s/")
