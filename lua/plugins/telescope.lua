@@ -46,7 +46,7 @@ return {
 
       -- keymaps
       opts.desc = "Fuzzy find files"
-      vim.keymap.set("n", "<C-p>", builtin.find_files, opts)
+      vim.keymap.set("n", "<C-o>", builtin.find_files, opts)
       opts.desc = "Find recent files"
       vim.keymap.set("n", "<leader>fr", builtin.oldfiles, opts)
       opts.desc = "Find string"
