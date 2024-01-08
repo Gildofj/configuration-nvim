@@ -29,6 +29,7 @@ return {
           "kotlin_language_server",
           "tailwindcss",
           "pyright",
+          "astro",
         },
         automatic_installation = true,
       })
@@ -210,6 +211,12 @@ return {
       })
       require("rust-tools").setup({
         server = {},
+      })
+
+      lspconfig.astro.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        filetypes = { "astro" },
       })
     end,
   },
