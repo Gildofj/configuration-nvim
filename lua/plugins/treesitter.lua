@@ -24,5 +24,12 @@ return {
     })
     -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
     require("ts_context_commentstring").setup({})
+
+    -- enable for astro files
+    vim.filetype.add({
+      extension = {
+        astro = "astro",
+      },
+    })
   end,
 }
