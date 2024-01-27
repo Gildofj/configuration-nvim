@@ -18,6 +18,13 @@ return {
       },
     })
 
+    local ts_conds = require("nvim-autopairs.ts-conds")
+    local Rule = require("nvim-autopairs.rule")
+    autopairs.add_rules({
+      Rule("%", "%", "lua").with_pair(ts_conds.is_ts_node({ "string", "comment" })),
+      Rule("$", "$", "lua").with_pair(ts_conds.is_not_ts_node({ "function" })),
+    })
+
     -- import nvim-autopairs completion functionality
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
