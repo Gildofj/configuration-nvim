@@ -8,7 +8,7 @@ return {
   config = function()
     local config = require("nvim-treesitter.configs")
     config.setup({
-      ensure_installed = { "astro", "tsx", "typescript", "html" },
+      ensure_installed = { "astro", "tsx", "typescript", "html", "lua" },
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },

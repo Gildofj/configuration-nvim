@@ -20,7 +20,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "tsserver",
-          "csharp_ls",
+          -- "csharp_ls",
           "cssmodules_ls",
           "emmet_ls",
           "html",
